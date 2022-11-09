@@ -127,3 +127,9 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+/anpr
+/Tensorflow
+/.ipynb_checkpoints
+/ipynb_checkpoints
+.ipynb_checkpoints
