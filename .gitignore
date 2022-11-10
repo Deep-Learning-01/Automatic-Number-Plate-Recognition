@@ -129,7 +129,7 @@ dmypy.json
 .pyre/
 
 /anpr
-/Tensorflow
+notebooks/Tensorflow
 /.ipynb_checkpoints
 /ipynb_checkpoints
 .ipynb_checkpoints
