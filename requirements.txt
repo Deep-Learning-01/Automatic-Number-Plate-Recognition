@@ -6,4 +6,5 @@ seaborn
 pyYAML
 tqdm
 joblib
+python-box
 -e .
