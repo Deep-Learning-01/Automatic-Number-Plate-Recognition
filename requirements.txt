@@ -1,0 +1,9 @@
+tensorflow
+pandas
+numpy
+matplotlib
+seaborn
+pyYAML
+tqdm
+joblib
+-e .
