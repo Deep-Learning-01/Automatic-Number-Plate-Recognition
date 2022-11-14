@@ -19,7 +19,8 @@ class DataIngestion:
         """
         logging.info("Entered the get_data_from_s3 method of Data ingestion class")
         try:
-            self.S3_operations.read_data_from_s3(bucket_file_name,bucket_name,output_filepath)
+            if not os.path.exists(output_filepath):
+                self.S3_operations.read_data_from_s3(bucket_file_name,bucket_name,output_filepath)
 
             logging.info("Exited the get_data_from_s3 method of Data ingestion class")
 
@@ -36,11 +37,15 @@ class DataIngestion:
     def _preprocess(self, zf:ZipFile, f:str, working_dir):
         """
         Method Name :   _preprocess
-        Description :   This hidden method will check if file exists if so , then will extract into target folder.
+        Description :   This hidden method will check if file exists if so , then will extract into target folder
+                         & Also checks size of file, if its empty then removes it .
         """
         target_filepath = os.path.join(working_dir,f)
         if not os.path.exists(target_filepath):
             zf.extract(f, working_dir)
+
+        if os.path.getsize(target_filepath==0):
+            os.remove(target_filepath)
     
     def unzip_file_and_clean(self, zip_data_filepath: str, unzip_dir_path: str) -> Path:
         """

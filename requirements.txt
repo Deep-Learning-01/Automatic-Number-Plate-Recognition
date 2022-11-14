@@ -1,5 +1,5 @@
 from_root==1.0.2
-tensorflow==2.10.0
+tensorflow
 boto3==1.26.3
 mypy-boto3-s3==1.24.76
 pandas==1.5.1
@@ -9,4 +9,6 @@ PyYAML==6.0
 python-multipart==0.0.5
 python-box==6.0.2
 python-dotenv
+opencv-python
+sklearn
 -e .
