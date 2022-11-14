@@ -1,13 +1,12 @@
-tensorflow
-pandas
-numpy
-matplotlib
-seaborn
-pyYAML
-tqdm
-joblib
-python-box
-python-dotenv
+from_root==1.0.2
+tensorflow==2.10.0
 boto3==1.26.3
 mypy-boto3-s3==1.24.76
+pandas==1.5.1
+dill==0.3.5.1
+Pillow==9.3.0
+PyYAML==6.0
+python-multipart==0.0.5
+python-box==6.0.2
+python-dotenv
 -e .

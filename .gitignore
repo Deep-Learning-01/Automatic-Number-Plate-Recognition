@@ -134,3 +134,4 @@ notebooks/images
 /ipynb_checkpoints
 .ipynb_checkpoints
 notebooks/labels.csv
+artifacts
