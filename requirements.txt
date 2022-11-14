@@ -7,4 +7,7 @@ pyYAML
 tqdm
 joblib
 python-box
+python-dotenv
+boto3==1.26.3
+mypy-boto3-s3==1.24.76
 -e .
