@@ -102,6 +102,7 @@ class DataTransformation:
             X = np.array(data,dtype=np.float32)
             y = np.array(output,dtype=np.float32)
 
+            #Save Numpy arrays
             save_numpy_array_data(file_path=self.data_transformation_config.DATA_TRANSFORMATION_DATA,array=X)
             save_numpy_array_data(file_path=self.data_transformation_config.DATA_TRANSFORMATION_OUTPUT,array=y)
            
