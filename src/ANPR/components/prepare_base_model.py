@@ -54,14 +54,18 @@ class PrepareBaseModel:
         return final_model
 
     def get_updated_model(self):
-        self.final_model = self._prepare_full_model(
-            model = self.model,
-            classes = CLASSES,
-            freeze_all = FREEZE_ALL,
-            freeze_till = None,
-            learning_rate = LEARNING_RATE
+        headmodel = self.model.output
+        headmodel = tf.keras.layers.Flatten()(headmodel)
+        headmodel = tf.keras.layers.Dense(500,activation="relu")(headmodel)
+        headmodel = tf.keras.layers.Dense(250,activation="relu")(headmodel)
+        headmodel = tf.keras.layers.Dense(4,activation='sigmoid')(headmodel)
+        final_model = tf.keras.models.Model(inputs=self.model.input,outputs=headmodel)
+        final_model.compile(
+            optimizer = tf.keras.optimizers.Adam(learning_rate=LEARNING_RATE),
+            metrics = ['accuracy'],
+            loss='mse'
         )
-        self.save_model(path = self.prepare_base_model_config.UPDATED_MODEL_PATH,model = self.final_model)
+        self.save_model(path = self.prepare_base_model_config.UPDATED_MODEL_PATH,model =final_model)
 
     @staticmethod
     def save_model(path : Path, model : tf.keras.Model):

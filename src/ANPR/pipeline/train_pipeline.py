@@ -86,10 +86,11 @@ class TrainPipeline:
             data_transformation_artifact = self.start_data_transformation(data_ingestion_artifact=data_ingestion_artifact)
             prepare_base_model_artifact = self.prepare_base_model()
             
-            self.model_training(
+            model_trainer_artifact = self.model_training(
                 data_ingestion_artifact=data_ingestion_artifact,
                 data_transformation_artifact=data_transformation_artifact,
                 prepare_base_model_artifact =prepare_base_model_artifact
                 )
+            
         except Exception as e:
             raise ANPRException(e,sys) from e

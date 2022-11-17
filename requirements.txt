@@ -9,6 +9,7 @@ PyYAML==6.0
 python-multipart==0.0.5
 python-box==6.0.2
 python-dotenv
-opencv-python
+opencv-python==4.5.5.64
 sklearn
+flask
 -e .

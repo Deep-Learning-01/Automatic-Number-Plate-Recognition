@@ -18,3 +18,7 @@ class PrepareBaseModelArtifacts:
 @dataclass
 class PrepareCallbacksArtifacts:
     callback_list: list
+
+@dataclass
+class ModelTrainerArtifacts:
+    trained_model_path : str

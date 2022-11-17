@@ -73,7 +73,7 @@ class ModelTraining:
         self.save_model(path=self.training_config.TRAINED_MODEL_PATH,model=self.model)
        
         
-    def initiate_model_training(self):
+    def initiate_model_training(self) -> ModelTrainerArtifacts:
         try: 
             logging.info("Entered the initiate_model_training method of ModelTraining class")
 
@@ -92,6 +92,10 @@ class ModelTraining:
             logging.info("Exited the initiate_model_training method of ModelTraining class")
 
             self.train(x_train,x_test,y_train,y_test,callback_list)
+
+            model_trainer_artifact = ModelTrainerArtifacts(trained_model_path=self.training_config.TRAINED_MODEL_PATH)
+
+            return model_trainer_artifact
 
         except Exception as e:
             raise ANPRException(e, sys) from e

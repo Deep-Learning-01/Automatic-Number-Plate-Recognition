@@ -2,6 +2,7 @@ import os
 from dataclasses import dataclass
 from from_root import from_root
 from src.ANPR.constants import *
+from src.ANPR.config.s3_opearations import S3Operation
 
 @dataclass
 class DataIngestionConfig:
@@ -39,3 +40,6 @@ class TrainingConfig:
         self.MODEL_TRAINING_ARTIFACTS_DIR :str = os.path.join(from_root(), ARTIFACTS_DIR, MODEL_TRAINING_DIR)
         self.TRAINED_MODEL_PATH : str = os.path.join(from_root(), self.MODEL_TRAINING_ARTIFACTS_DIR, TRAINED_MODEL)
 
+class ModelPredictorConfig:
+    def __init__(self):
+        self.S3_OPERATION = S3Operation()
