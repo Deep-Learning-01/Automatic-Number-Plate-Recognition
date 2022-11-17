@@ -47,7 +47,8 @@ class PrepareBaseModel:
         )
         final_model.compile(
             optimizer = tf.keras.optimizers.Adam(learning_rate=learning_rate),
-            metrics = ['accuracy']
+            metrics = ['accuracy'],
+            loss='mse'
         )
         print(final_model.summary())
         return final_model

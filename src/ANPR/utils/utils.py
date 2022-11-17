@@ -1,6 +1,6 @@
 import os, yaml,sys
 from pathlib import Path
-from src.ANPR import logger
+from src.ANPR.logger import logging
 from box import ConfigBox
 from box.exceptions import BoxValueError
 import numpy as np
@@ -16,7 +16,7 @@ def create_directories(path_to_directories: list, verbose=True):
     for path in path_to_directories:
         os.makedirs(path, exist_ok=True)
         if verbose:
-            logger.info(f"created directory at: {path}")
+            logging.info(f"created directory at: {path}")
 
 def read_yaml(path_to_yaml: Path) -> ConfigBox:
     """reads yaml file and returns

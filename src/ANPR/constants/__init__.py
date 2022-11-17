@@ -28,10 +28,20 @@ BASE_MODEL_PATH = 'base_model.h5'
 UPDATED_MODEL_PATH = 'updated_model.h5'
 AUGMENTAION = True
 IMAGE_SIZE = [224,224,3] # As per InceptionResNetV2
-BATCH_SIZE = 16
+BATCH_SIZE = 8
 INCLUDE_TOP = False
 EPOCHS= 180
 WEIGHTS = 'imagenet'
 LEARNING_RATE = 1e-4
 CLASSES = 4
 FREEZE_ALL= True
+
+# Prepare Callbacks related constants
+PREPARE_CALLBACKS_DIR ="Callbacks"
+TENSORBOARD_ROOT_LOG_DIR = "tensorboard_root_log_dir"
+CHECKPOINT_DIR = "checkpoint_dir"
+CHECKPOINT_MODEL = "model.h5"
+
+# Model Training related constants
+MODEL_TRAINING_DIR = "Training"
+TRAINED_MODEL = "model.h5" 

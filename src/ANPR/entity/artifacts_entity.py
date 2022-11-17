@@ -14,3 +14,7 @@ class DataTransformationArtifacts:
 class PrepareBaseModelArtifacts:
     base_model_file_path:str
     updated_model_filr_path:str
+
+@dataclass
+class PrepareCallbacksArtifacts:
+    callback_list: list
