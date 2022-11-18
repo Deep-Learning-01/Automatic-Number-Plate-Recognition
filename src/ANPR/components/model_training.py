@@ -89,11 +89,13 @@ class ModelTraining:
 
             x_train,x_test,y_train,y_test = self.split_train_test()
 
-            logging.info("Exited the initiate_model_training method of ModelTraining class")
-
             self.train(x_train,x_test,y_train,y_test,callback_list)
 
+            trained_model_path=self.training_config.TRAINED_MODEL_PATH
+        
             model_trainer_artifact = ModelTrainerArtifacts(trained_model_path=self.training_config.TRAINED_MODEL_PATH)
+
+            logging.info("Exited the initiate_model_training method of ModelTraining class")
 
             return model_trainer_artifact
 

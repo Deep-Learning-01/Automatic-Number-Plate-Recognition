@@ -8,18 +8,19 @@ import matplotlib.pyplot as plt
 import tensorflow as tf
 from keras.utils.image_utils import load_img, img_to_array
 from PIL import Image
+from src.ANPR.entity.artifacts_entity import *
 
 BASE_PATH = os.getcwd()
 UPLOAD_PATH = os.path.join(BASE_PATH, 'artifacts','Training','model.h5' )
 model = tf.keras.models.load_model(UPLOAD_PATH)
 
-image= 'E:\INEURON_DATA\CV\Automatic-Number-Plate-Recognition\notebooks\TEST\car.jpeg'
-
 class ModelPredictor:
-    def __init__(self):
-        pass
+    def __init__(self,model_trainer_artifacts: ModelTrainerArtifacts,
+    model_predictor_config: ModelPredictorConfig()):
+        self.model_trainer_artifacts = model_trainer_artifacts
+        self.model_predictor_config = model_predictor_config
 
-    def object_detection(self,path, filename):
+    def object_detection(self,path, filename,model):
         # Read image
         image = load_img(path)  # PIL object
         image = np.array(image, dtype=np.uint8)  # 8 bit array (0,255)
@@ -49,7 +50,9 @@ class ModelPredictor:
 
     def OCR(self,path, filename):
         img = np.array(load_img(path))
-        cods = self.object_detection(path, filename)
+        model_path = self.model_trainer_artifacts.trained_model_path
+        model = tf.keras.models.load_model(model_path)
+        cods = self.object_detection(path, filename,model)
         xmin, xmax, ymin, ymax = cods[0]
         roi = img[ymin:ymax, xmin:xmax]
         roi_bgr = cv2.cvtColor(roi, cv2.COLOR_RGB2BGR)

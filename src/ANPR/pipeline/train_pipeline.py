@@ -4,6 +4,7 @@ from src.ANPR.components.data_transformation import DataTransformation
 from src.ANPR.components.prepare_base_model import PrepareBaseModel
 from src.ANPR.components.prepare_callbacks import PrepareCallbacks
 from src.ANPR.components.model_training import ModelTraining
+from src.ANPR.components.model_pusher import ModelPusher
 from src.ANPR.entity.config_entity import *
 
 from src.ANPR.entity.artifacts_entity import *
@@ -18,6 +19,7 @@ class TrainPipeline:
         self.prepare_base_model_config = PrepareBaseModelConfig()
         self.prepare_callbacks_config = PrepareCallbacksConfig()
         self.training_config = TrainingConfig()
+        self.model_pusher_config= ModelPusherConfig()
         self.s3_operations = S3Operation()
     
     def start_data_ingestion(self)-> DataIngestionArtifacts:
@@ -74,11 +76,27 @@ class TrainPipeline:
                 prepare_base_model_artifact =prepare_base_model_artifact,
                 
             )
-            training_obj.initiate_model_training()
+            model_trainer_artifact = training_obj.initiate_model_training()
+            return model_trainer_artifact
+
         except Exception as e:
             raise ANPRException(e,sys) from e
 
-        
+    def start_model_pusher(
+        self,
+        model_trainer_artifacts: ModelTrainerArtifacts,
+        s3_operation: S3Operation,
+    ) :
+        logging.info("Entered the start_model_pusher method of TrainPipeline class")
+        try:
+            print(model_trainer_artifacts)
+            model_pusher_obj = ModelPusher(model_pusher_config=self.model_pusher_config,
+            model_trainer_artifacts=model_trainer_artifacts,
+            S3_operations=s3_operation
+            )
+            model_pusher_obj.initiate_model_pusher()
+        except Exception as e:
+            raise ANPRException(e,sys) from e
     
     def run_pipeline(self) -> None:
         try:
@@ -91,6 +109,8 @@ class TrainPipeline:
                 data_transformation_artifact=data_transformation_artifact,
                 prepare_base_model_artifact =prepare_base_model_artifact
                 )
+            print(model_trainer_artifact)
+            self.start_model_pusher(model_trainer_artifacts=model_trainer_artifact,s3_operation=self.s3_operations)
             
         except Exception as e:
             raise ANPRException(e,sys) from e

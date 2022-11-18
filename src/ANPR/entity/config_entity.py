@@ -40,6 +40,13 @@ class TrainingConfig:
         self.MODEL_TRAINING_ARTIFACTS_DIR :str = os.path.join(from_root(), ARTIFACTS_DIR, MODEL_TRAINING_DIR)
         self.TRAINED_MODEL_PATH : str = os.path.join(from_root(), self.MODEL_TRAINING_ARTIFACTS_DIR, TRAINED_MODEL)
 
+@dataclass
+class ModelPusherConfig:
+    def __init__(self):
+        self.S3_MODEL_KEY_PATH: str = os.path.join(TRAINED_MODEL)
+        self.BUCKET_NAME: str = BUCKET_NAME
+
 class ModelPredictorConfig:
     def __init__(self):
         self.S3_OPERATION = S3Operation()
+        self.PREDICT_PATH:str = os.path
