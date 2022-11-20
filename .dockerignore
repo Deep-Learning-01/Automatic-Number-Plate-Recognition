@@ -8,3 +8,4 @@ env
 *.jpg
 *.jpeg
 *.png
+static/model/model.h5
