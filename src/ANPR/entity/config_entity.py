@@ -49,4 +49,4 @@ class ModelPusherConfig:
 class ModelPredictorConfig:
     def __init__(self):
         self.S3_OPERATION = S3Operation()
-        self.PREDICT_PATH:str = os.path
+        

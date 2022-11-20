@@ -109,8 +109,7 @@ class TrainPipeline:
                 data_transformation_artifact=data_transformation_artifact,
                 prepare_base_model_artifact =prepare_base_model_artifact
                 )
-            print(model_trainer_artifact)
             self.start_model_pusher(model_trainer_artifacts=model_trainer_artifact,s3_operation=self.s3_operations)
-            
+
         except Exception as e:
             raise ANPRException(e,sys) from e
