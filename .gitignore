@@ -135,3 +135,7 @@ notebooks/images
 .ipynb_checkpoints
 notebooks/labels.csv
 artifacts
+*.jpg
+*.jpeg
+*.png
+static/model/model.h5

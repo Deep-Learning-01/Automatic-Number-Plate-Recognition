@@ -47,12 +47,14 @@ def object_detection(path, filename,model):
 
 def OCR(path, filename):
     img = np.array(load_img(path))
+    model_path = os.path.join(os.getcwd(), STATIC_DIR, 'model')
+    shutil.rmtree(model_path)
+    os.makedirs(model_path, exist_ok=True)
+    model_path = os.path.join(os.getcwd(), STATIC_DIR, 'model', 'model.h5')
     S3_OPERATION = S3Operation()
-    #fetch_model = S3_OPERATION.load_h5_model(BUCKET_NAME,TRAINED_MODEL,TRAINED_MODEL)
-    fetch_model = os.path.join(os.getcwd(), 'model.h5')
-    model = tf.keras.models.load_model(fetch_model)
+    fetch_model = S3_OPERATION.load_h5_model(BUCKET_NAME,TRAINED_MODEL,model_path)
     logging.info(f"Loaded {fetch_model} model from S3 bucket.")
-    cods = object_detection(path, filename,model)
+    cods = object_detection(path, filename,fetch_model)
     xmin, xmax, ymin, ymax = cods[0]
     roi = img[ymin:ymax, xmin:xmax]
     roi_bgr = cv2.cvtColor(roi, cv2.COLOR_RGB2BGR)

@@ -1,0 +1,10 @@
+demo
+ocr
+artifacts
+__pycache__
+LICENSE
+README.md
+env
+*.jpg
+*.jpeg
+*.png
