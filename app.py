@@ -1,6 +1,5 @@
 from flask import Flask, render_template, request
 from src.ANPR.pipeline.prediction_pipeline import OCR
-from werkzeug.datastructures import FileStorage
 import os, shutil
 from src.ANPR.constants import *
 # webserver gateway interface
