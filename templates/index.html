@@ -2,27 +2,33 @@
 
 
 {% if upload %}
+<br>
+<br>
+<br>
 <div class="container">
-  <br />
-  <table>
-    <tr>
-      <td>
-        <img
-          class="rounded float-left img-fluid"
-          src="/static/upload/{{upload_image}}"
-          alt=""
-        />
-      </td>
-      <td>
-        <img
-          class="rounded float-right img-fluid"
-          src="/static/predict/{{upload_image}}"
-          alt=""
-        />
-      </td>
-    </tr>
-  </table>
-  <br />
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="card align-items-center" style="padding: 2%;">
+        <img class="card-img-top"  src="/static/upload/{{upload_image}}" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title"><b style="color:blue ;">Original Image</b></h5>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="card align-items-center" style="padding: 2%;">
+        <img class="card-img-top" src="/static/predict/{{upload_image}}" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title"><b style="color:red ;">Area of Interest</b></h5>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+ 
   <table style="border: solid black; width: 100%">
     <tr style="border: solid black">
       <th style="text-align: center;">CROPPEED LICENCE PLATE IMAGE</th>
